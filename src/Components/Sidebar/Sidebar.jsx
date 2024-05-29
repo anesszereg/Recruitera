@@ -1,6 +1,6 @@
 import React from 'react'
 import './Sidebar.css'
-
+import logo from'../../assets/Svg/logo.svg'
 function Sidebar() {
     return (
     
@@ -10,7 +10,7 @@ function Sidebar() {
 
 
         <div className="logo">
-            <img src="https://www.flaticon.com/svg/vstatic/svg/2948/2948130.svg?token=exp=1634878645~hmac=5f8d1f3b6d4c1f3f7f1e3a7d9c1a2f1d" alt="logo"/>
+            <img src={logo} alt="logo"/>
         </div>
 
         <div className="list_navigation">

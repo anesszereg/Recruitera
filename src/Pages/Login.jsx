@@ -10,7 +10,7 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
     container: {
         display: 'flex',
-        padding:'5%',
+
         height: '100vh',
         backgroundColor: '#f5f5f5',
         gap: '7%',
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
         justifyContent: 'start',
         height: '90%',
         paddingTop:'50px',
-    gap:'70px',
+    gap:'40px',
     }
 })
 
@@ -85,15 +85,15 @@ function Login() {
             <div className={classes.form}>
 
                 <Box width={'70%'}>
-                    <Typography fontSize={'50px'} fontWeight={'bold'} color={'#000'}> Connexion</Typography>
-                    <Typography fontSize={'18px'} fontWeight={'500'} color={"#7e7e7e"}>Pour créer un compte, veuillez contacter le service d'assistance</Typography>
+                    <Typography fontSize={'30px'} fontWeight={'bold'} color={'#000'}> Connexion</Typography>
+                    <Typography fontSize={'12px'} fontWeight={'500'} color={"#7e7e7e"}>Pour créer un compte, veuillez contacter le service d'assistance</Typography>
                 </Box>
 
 
-                <Box display={'flex'} flexDirection={'column' } gap={'16px'} >
+                <Box display={'flex'} flexDirection={'column' } gap={'10px'} >
                 <Box display={'flex'} flexDirection={'column' } gap={'4px'}>
 
-                    <Typography variant="h6" color="initial"> Email:</Typography>
+                    <Typography variant="body1" color="initial"> Email:</Typography>
                     <TextField
                       id="outlined-basic"
                       label=""
@@ -101,12 +101,14 @@ function Login() {
                       placeholder='Email@example.com'
                       type='email'
                       onChange={(e) => setEmail(e.target.value)}
+                    
+
                       
                       />              
                       </Box>
                     <Box display={'flex'} flexDirection={'column' } gap={'4px'}>
 
-                    <Typography variant="h6" color="initial" > mot de pass :</Typography>
+                    <Typography variant="body1" color="initial" > mot de pass :</Typography>
                     <TextField
                       id="outlined-basic"
                       label=""
@@ -125,7 +127,8 @@ function Login() {
                       </Box>
 
                       <Button   sx={{
-                        padding:'14px',
+                        height:'50px',
+
                         backgroundColor:'#00414A',
                         color:"#fff",
                         borderRadius: '8px',
@@ -141,7 +144,7 @@ function Login() {
                       
                       <Box textAlign={'center'}>
                         
-                      <Link href="##" variant='Subtitle1' underline='always' color="#000"> Contacter le service d’assistance ici</Link>
+                      <Link href="##" fontSize={'14px'} underline='always' color="#000"> Contacter le service d’assistance ici</Link>
                       </Box>
 
                 

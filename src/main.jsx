@@ -7,12 +7,13 @@ import HomePage from './Pages/HomePage.jsx';
 import Login from './Pages/Login.jsx';
 
 
+
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App/>
     }, {
-        path: "/home",
+        path: "/dashboard",
         element: <HomePage/>
     },
     {
