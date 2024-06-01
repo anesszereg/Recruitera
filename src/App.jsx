@@ -1,20 +1,37 @@
-import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Sidebar from './Components/Sidebar/Sidebar'
 
+import Sidebar from './Components/Sidebar';
+import {Box} from '@mui/material';
+import {Outlet} from 'react-router-dom';
+import Navbar from './Components/Navbar';
 
 function App() {
 
 
-    return (<>
-
-        <Sidebar/>
+    return (
 
 
+        <Box display={'flex'}>
 
-    </>)
+            <Sidebar/>
+
+            <div className="layout">
+                <div className="navbar">
+                    <Navbar/>
+
+
+                </div>
+
+
+                <Outlet/>
+
+
+            </div>
+
+
+        </Box>
+
+    )
 }
 
 export default App
