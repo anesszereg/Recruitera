@@ -7,6 +7,8 @@ import {TbUsers} from "react-icons/tb";
 import {IoMdTime} from "react-icons/io";
 import {FaRegUser} from "react-icons/fa6";
 import {
+    IoHome,
+    IoHomeOutline,
     IoMap,
     IoMapOutline,
     IoNotificationsOutline,
@@ -16,10 +18,12 @@ import {
     IoPerson,
     IoPersonOutline,
     IoSettingsSharp,
-    IoTime,
-    IoTimeOutline
+
 } from "react-icons/io5";
-import {IoMdNotificationsOutline} from "react-icons/io";
+import { LuCpu } from "react-icons/lu";
+import { BsCpuFill } from "react-icons/bs";
+import { MdContactSupport } from "react-icons/md";
+import { MdOutlineContactSupport } from "react-icons/md";
 import {IoSettingsOutline} from "react-icons/io5";
 import {FiLogOut} from "react-icons/fi";
 import {Link} from 'react-router-dom';
@@ -58,44 +62,44 @@ function Sidebar() {
 
     const navigation = [
         {
-            name: 'List des sites',
-            icon: <IoMapOutline size={'24px'}/>,
-            selectedIcon: <IoMap size={'24px'}
-                color='#00414A'/>,
-            path: '/Dashboard/Liste-des-sites'
+            name: 'Page d accueil',
+            icon: <IoHomeOutline size={'24px'}/>,
+            selectedIcon: <IoHome size={'24px'}
+                color='#5356FF'/>,
+            path: '/Dashboard/Home'
         },
         {
-            name: 'Sous-traitant ',
+            name: 'Employés ',
             icon: <IoPeopleOutline size={'24px'}/>,
             selectedIcon: <IoPeople size={'24px'}
-                color='#00414A'/>,
-            path: '/Dashboard/Sous-traitant'
+                color='#5356FF'/>,
+            path: '/Dashboard/Employés'
         },
         {
-            name: 'Historique',
-            icon: <IoTimeOutline size={'24px'}/>,
-            selectedIcon: <IoTime size={'24px'}
-                color='#00414A'/>,
-            path: '/Dashboard/Historique'
-        },
-        {
-            name: 'Modérateur',
+            name: 'Clients',
             icon: <IoPersonOutline size={'24px'}/>,
             selectedIcon: <IoPerson size={'24px'}
-                color='#00414A'/>,
-            path: '/Dashboard/Modérateur'
-        }, {
-            name: 'Notification',
-            icon: <IoNotificationsOutline size={'24px'}/>,
-            selectedIcon: <IoNotificationsSharp size={'24px'}
-                color='#00414A'/>,
-            path: '/Dashboard/Notifications'
+                color='#5356FF'/>,
+            path: '/Dashboard/Clients'
+        },
+        {
+            name: 'Matériel',
+            icon: <LuCpu  size={'24px'}/>,
+            selectedIcon: <BsCpuFill size={'24px'}
+                color='#5356FF'/>,
+            path: '/Dashboard/Matériel'
         }, {
             name: 'paramètre',
             icon: <IoSettingsOutline size={'24px'}/>,
             selectedIcon: <IoSettingsSharp size={'24px'}
-                color='#00414A'/>,
-            path: '/Dashboard/paramètre'
+            color='#5356FF'/>,
+            path: '/Dashboard/Paramètre '
+        }, {
+            name: 'Support',
+            icon: <MdOutlineContactSupport size={'24px'}/>,
+            selectedIcon: <MdContactSupport size={'24px'}
+                color='#5356FF'/>,
+            path: '/Dashboard/Support'
         }, {
             name: 'deconnexion',
             icon: <FiLogOut size={'24px'} color='#FF001F'/>,
@@ -139,7 +143,7 @@ function Sidebar() {
 
                             <Link  style={{
                                 textDecoration:'none',
-                                color: Selected === index ? '#00414A' : '#7e7e7e',
+                                color: Selected === index ? '#5356FF' : '#7e7e7e',
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: '5px',

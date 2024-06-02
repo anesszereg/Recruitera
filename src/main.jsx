@@ -5,16 +5,42 @@ import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import HomePage from './Pages/HomePage.jsx';
 import Login from './Pages/Login.jsx';
+import Client from './Pages/Client.jsx';
+import Employee from './Pages/Employee.jsx';
+import Material from './Pages/Material.jsx';
+import Support from './Pages/Support.jsx';
 
 
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <App/>
-    }, {
-        path: "/dashboard",
-        element: <HomePage/>
+        path: "/Dashboard",
+        element: <App/>,
+        children: [
+            {
+                path: "/Dashboard/Home",
+                element: <HomePage/>
+            },
+            {
+                path: "/Dashboard/Client",
+                element: <Client    />  
+            },
+            {
+                path: "/Dashboard/Employés",
+                element: <Employee/>
+            }
+            ,
+            {
+                path: "/Dashboard/Materail",
+                element: <Material/>
+            }
+            ,
+            {
+                path: "/Dashboard/Support",
+                element: <Support/>
+            }
+        ]
+
     },
     {
         path: "/login",

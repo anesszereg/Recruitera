@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Box , Typography, TextField, Link, Button} from '@mui/material';
 import background_image from '../assets/images/background.png'
 import { makeStyles } from '@mui/styles';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -33,6 +34,8 @@ const useStyles = makeStyles({
 
 function Login() {
 
+    const navigate = useNavigate()
+
     const classes = useStyles();
 
     //state for email and password
@@ -53,6 +56,8 @@ function Login() {
         //login logic
         if (email === '' && password === '123456') {
             console.log('logged in')
+            navigate('/Dashboard/Home')
+            
         }
         else {
             setError('Failed to login')
@@ -137,7 +142,9 @@ function Login() {
                             backgroundColor:'rgba(0, 65, 74, 0.76)',
                             color:"#fff",
                         }
-                      }}>
+                      }}
+                      onClick={handleSubmit}
+                      >
                             Se connecter
                         
                       </Button >
