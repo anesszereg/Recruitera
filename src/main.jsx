@@ -9,6 +9,7 @@ import Client from './Pages/Client.jsx';
 import Employee from './Pages/Employee.jsx';
 import Material from './Pages/Material.jsx';
 import Support from './Pages/Support.jsx';
+import ClientFiles from './Pages/ClientFiles.jsx';
 
 
 
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
             {
                 path: "/Dashboard/Support",
                 element: <Support/>
+            }
+            ,
+            {
+                path: "/Dashboard/ClientFiles",
+                element: <ClientFiles/>
             }
         ]
 

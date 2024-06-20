@@ -1,12 +1,15 @@
-import {Button, Typography} from '@mui/material';
+import {Box, Button, Typography} from '@mui/material';
 import {makeStyles} from '@mui/styles';
-import React from 'react'
+import React, { useState } from 'react'
 import {LuFolderPlus} from 'react-icons/lu';
 import ClientCard from '../Components/ClientCard';
 import image_company from '../assets/images/company1.png';
 import image_company2 from '../assets/images/comany2.png';
 import image_company3 from '../assets/images/company3.png';
 import image_company4 from '../assets/images/company4.png';
+
+import { MdFactory } from 'react-icons/md';
+import AddClient from '../Components/AddClient';
 
 
 // ! style :
@@ -27,18 +30,25 @@ const useStyles = makeStyles({
     cardContainer: {
         display: "flex",
         gap: "20px",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+
     }
 
 
 });
 
 
-// ! create fake data :
 
 
-const clientData = [
-    {
+
+
+function Client() {
+    
+    
+    const classes = useStyles()
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
+    // ! create fake data :
+    const [clients, setClients] = useState([{
         url: image_company,
         name: 'Company One',
         description: 'This is a brief description of Company One.'
@@ -48,39 +58,18 @@ const clientData = [
         name: 'Company Two',
         description: 'This is a brief description of Company Two.'
     },
-    {
-        url: image_company3,
-        name: 'Company Three',
-        description: 'This is a brief description of Company Three.'
-    },
-    {
-        url: image_company4,
-        name: 'Company Four',
-        description: 'This is a brief description of Company Four.'
-    }, {
-        url: image_company,
-        name: 'Company Five',
-        description: 'This is a brief description of Company Five.'
-    }, {
-        url: image_company2,
-        name: 'Company Six',
-        description: 'This is a brief description of Company Six.'
-      }, {
-        url: image_company3,
-        name: 'Company Seven',
-        description: 'This is a brief description of Company Seven.'
-    }, {
-        url: image_company4,
-        name: 'Company Eight',
-        description: 'This is a brief description of Company Eight.'
-    },
-];
+   ]);
+    const handleOpenDialog = () => {
+        setIsDialogOpen(true);
+    };
 
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false);
+    };
 
-function Client() {
-
-
-    const classes = useStyles()
+    const handleAddClient = (newClient) => {
+        setClients((prevClients) => [...prevClients, newClient]);
+    };
 
 
     return (
@@ -96,7 +85,7 @@ function Client() {
 
 
                 <Button onClick={
-                        () => setAddSiteDialogOpen(true)
+                        handleOpenDialog
                     }
                     sx={
                         {
@@ -113,10 +102,10 @@ function Client() {
                 classes.cardContainer
             }>
                 {
-                clientData.map((client, index) => (
+                clients.map((client, index) => (
                     <ClientCard key={index}
                         url={
-                            client.url
+                            client.url 
                         }
                         name={
                             client.name
@@ -126,6 +115,10 @@ function Client() {
                         }/>
                 ))
             } </div>
+
+            <AddClient  isDialogOpen={isDialogOpen}
+                onCloseDialog={handleCloseDialog}
+                onAddClient={handleAddClient}/>
 
         </div>
     )
