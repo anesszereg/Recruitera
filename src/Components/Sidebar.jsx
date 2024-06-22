@@ -1,6 +1,6 @@
 import {makeStyles} from '@mui/styles'
 import React, {useState} from 'react'
-import logo from '../assets/Svg/logo.svg'
+import logo from '../assets/images/LOGO.png'
 import {List, ListItem, ListItemIcon, ListItemText} from '@mui/material';
 
 import {TbUsers} from "react-icons/tb";
@@ -17,16 +17,16 @@ import {
     IoPeopleOutline,
     IoPerson,
     IoPersonOutline,
-    IoSettingsSharp,
+    IoSettingsSharp
 
 } from "react-icons/io5";
-import { LuCpu } from "react-icons/lu";
-import { BsCpuFill } from "react-icons/bs";
-import { MdContactSupport } from "react-icons/md";
-import { MdOutlineContactSupport } from "react-icons/md";
+import {LuCpu} from "react-icons/lu";
+import {BsCpuFill} from "react-icons/bs";
+import {MdContactSupport} from "react-icons/md";
+import {MdOutlineContactSupport} from "react-icons/md";
 import {IoSettingsOutline} from "react-icons/io5";
 import {FiLogOut} from "react-icons/fi";
-import {Link} from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -58,6 +58,7 @@ const useStyles = makeStyles({
 function Sidebar() {
 
     const [Selected, setSelected] = useState(0)
+    const navigate = useNavigate()
 
 
     const navigation = [
@@ -84,7 +85,7 @@ function Sidebar() {
         },
         {
             name: 'Matériel',
-            icon: <LuCpu  size={'24px'}/>,
+            icon: <LuCpu size={'24px'}/>,
             selectedIcon: <BsCpuFill size={'24px'}
                 color='#5356FF'/>,
             path: '/Dashboard/Matériel'
@@ -92,7 +93,7 @@ function Sidebar() {
             name: 'paramètre',
             icon: <IoSettingsOutline size={'24px'}/>,
             selectedIcon: <IoSettingsSharp size={'24px'}
-            color='#5356FF'/>,
+                color='#5356FF'/>,
             path: '/Dashboard/Paramètre '
         }, {
             name: 'Support',
@@ -102,7 +103,8 @@ function Sidebar() {
             path: '/Dashboard/Support'
         }, {
             name: 'deconnexion',
-            icon: <FiLogOut size={'24px'} color='#FF001F'/>,
+            icon: <FiLogOut size={'24px'}
+                color='#FF001F'/>,
             path: '/Dashboard/LogOut'
         },
 
@@ -116,7 +118,7 @@ function Sidebar() {
             classes.container
         }>
             <img src={logo}
-                alt="logo"/>
+                alt="logo" width={'100px'}/>
 
 
             <div className="navigation_center">
@@ -132,38 +134,39 @@ function Sidebar() {
                             key={index}
                             sx={
                                 {
-                                    width: '250px',  
-                                    margin: '10px 0', 
-                                   
+                                    width: '250px',
+                                    margin: '10px 0',
+                                    textDecoration: 'none',
+                                    color: Selected === index ? '#5356FF' : '#7e7e7e',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '5px'
+
                                 }
                             }
                             onClick={
-                                () => setSelected(index)
+                                () => {
+                                    setSelected(index),
+                                    navigate(item.path)
+                                }
                         }>
 
-                            <Link  style={{
-                                textDecoration:'none',
-                                color: Selected === index ? '#5356FF' : '#7e7e7e',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '5px',
-                            }} to={
-                                item.path
+
+                            <ListItemIcon style={
+                                {width: '30px'}
                             }>
-                                <ListItemIcon style={{width:'30px'}} > {
-                                    Selected === index ? item.selectedIcon : item.icon
-                                } </ListItemIcon>
-                                <ListItemText sx={
-                                        {
-                                            fontSize: '16px',
-                                            fontWeight: 'bold'
-                                        }
+                                {
+                                Selected === index ? item.selectedIcon : item.icon
+                            } </ListItemIcon>
+                            <ListItemText sx={
+                                    {
+                                        fontSize: '16px',
+                                        fontWeight: 'bold'
                                     }
-                                    primary={
-                                        item.name
-                                    }/>
-                            </Link>
-                        </ListItem>
+                                }
+                                primary={
+                                    item.name
+                                }/></ListItem>
                     ))
                 } </List>
             </div>
@@ -177,20 +180,22 @@ function Sidebar() {
                             key={index}
                             sx={
                                 {
-                                    width: '250px',  
-                                    margin: '10px 0', 
-                                   
+                                    width: '250px',
+                                    margin: '10px 0'
+
                                 }
-                            }
-                            >
-                            <Link style={{
-                                textDecoration:'none',
-                                color: '#FF001F',
-                                // add hoover
-                               
-                                display: 'flex',
-                            }} to={
-                                item.path
+                        }>
+                            <Link style={
+                                    {
+                                        textDecoration: 'none',
+                                        color: '#FF001F',
+                                        // add hoover
+
+                                        display: 'flex'
+                                    }
+                                }
+                                to={
+                                    item.path
                             }>
 
                                 <ListItemIcon> {

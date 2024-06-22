@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import {LuFolderPlus} from 'react-icons/lu';
 import EmplyeeTable from '../Components/EmplyeeTable';
 import AddEmpeloyee from '../Components/AddEmpeloyee';
+import { buttonStyles } from '../Layout/buttonStyles';
 
 
 // ! style :
@@ -39,13 +40,7 @@ function createData(Id, ProjectCount, name, email, ) {
 }
 
 const rows = [
-    {
-        Id: '#1',
-        ProjectCount: 5,
-        name: ' Doe',
-        prenom:'John',
-        email: 'jogn.@gmail.com'
-    },
+   
 
 
 ];
@@ -108,7 +103,7 @@ handleOpenDialog
                     }
                     sx={
                         {
-                            ...buttons.greanButton,
+                            ...buttonStyles.primary,
                             height: '40px'
                         }
                 }>
@@ -145,7 +140,7 @@ handleOpenDialog
 
                                     {/* Navigation buttons */}
                                     <Button
-                                        sx={{ ...buttons.greyButton, height: '34px' , }}
+                                        sx={{ ...buttonStyles.greyButton, height: '34px' , }}
                                         onClick={handlePreviousPage}
                                         // disabled={currentPage === 1}
                                     >Précédent</Button>
@@ -155,12 +150,12 @@ handleOpenDialog
                                             key={index}
                                             onClick={() => setCurrentPage(index + 1)}
                                             // disabled={currentPage === index + 1}
-                                            sx={{ ...buttons.greyButton, height: '34px' ,minWidth: '30px', }}
+                                            sx={{ ...buttonStyles.greyButton, height: '34px' ,minWidth: '30px', }}
                                             
                                         >{index + 1}</Button>
                                     ))}
                                     <Button
-                                    sx={{...buttons.greanButton,height:'34px'}}
+                                    sx={{...buttonStyles.primary,height:'34px'}}
 
                                         onClick={handleNextPage}
                                         // disabled={currentPage === totalPages}
@@ -184,39 +179,3 @@ handleOpenDialog
 export default Employee
 
 
-const buttons = {
-    greanButton: {
-        backgroundColor: 'rgba(83, 86, 255, 1)',
-        color: '#fff',
-        borderRadius: '5px',
-        padding: '0 20px',
-        border: '1px solid rgba(83, 86, 255, 1)',
-        textTransform: 'none',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '10px',
-        '&:hover': {
-            backgroundColor: '#fff',
-            color: 'rgba(83, 86, 255, 1)',
-            border: '1px solid rgba(83, 86, 255, 1)'
-        }
-    },
-    greyButton: {
-      backgroundColor: '#E7E7E7',
-      color: '#515151',
-      borderRadius: '5px',
-      padding: '0 20px',
-      border: '1px solid #E7E7E7',
-      textTransform: 'none',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '10px',
-      '&:hover': {
-          backgroundColor: '#E7E7E7',
-          color: '#515151',
-          border: '1px solid #515151'
-      }
-  }
-}

@@ -19,11 +19,11 @@ function Navbar() {
   }, []); 
   return (
     <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} borderBottom={'1px solid #ccc'} width={'100%'} padding={'15px'}>
-      <Box display={'flex'} alignItems={'center'} gap={'15px'}>
-        <Avatar alt="Cindy Baker" src={avatar} sx={{ width: 48, height: 48 }} />
-        <Typography variant="subtitle2" color="initial">user name</Typography>
-      </Box>
       <Typography variant="body2" color="initial">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Typography>
+      <Box display={'flex'} alignItems={'center'} gap={'15px'}>
+        <Typography variant="subtitle2" color="initial">Islam</Typography>
+        <Avatar alt="Cindy Baker" src={avatar} sx={{ width: 48, height: 48 }} />
+      </Box>
     </Box>
   );
 }

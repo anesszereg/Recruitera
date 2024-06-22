@@ -12,7 +12,7 @@ import map from '../assets/images/map.png'
 
 const useStyles = makeStyles({
     container: {
-        padding: ' 40px',
+        padding: ' 23px',
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
         height: '100%'
 
     },map:{
-        width:"66%",
+        width:"65%",
         // height: '100%',
         borderRadius: '16px',
         boxShadow: '0 0 10px 0 rgba(0,0,0,0.1)',

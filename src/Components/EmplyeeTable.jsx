@@ -10,7 +10,7 @@ function EmployeeTable({ row }) {
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell component="th" scope="row" sx={{ color: '#7E7E7E' }}>
-          {row.Id}
+          #{row.Id+1}
         </TableCell>
         <TableCell align="center" sx={{ color: '#7E7E7E' }}>
           <Box display='flex' gap='10px' alignItems={'center'}>
@@ -18,7 +18,7 @@ function EmployeeTable({ row }) {
           <IoIosCheckmarkCircle color='#29FF00' size={20} />
           <Typography variant="body1" color="initial">
 
-          #{row.ProjectCount} 
+        {row.ProjectCount} 
           </Typography>
           </Box>
         </TableCell>

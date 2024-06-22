@@ -11,6 +11,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import { LuFolderPlus } from 'react-icons/lu';
 import { MdFactory } from 'react-icons/md';
+import { buttonStyles } from '../Layout/buttonStyles';
 
 const useStyles = makeStyles({
 
@@ -41,41 +42,7 @@ function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
 
     const classes = useStyles();
 
-    const buttons = {
-        type_site: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '10px',
-            backgroundColor: '#F5F5F5',
-            borderRadius: '8px',
-            border: '1px solid #D3D3D3',
-            width: '150px',
-            height: '150px',
-            cursor: 'pointer'
-        },
-        greyButton: {
-            backgroundColor: '#E0E0E0',
-            color: '#000'
-        },
-        primaryButoon: {
-            backgroundColor: '#5356FF',
-        color: '#fff',
-        borderRadius: '5px',
-        padding: '0 20px',
-        border: '1px solid #5356FF',
-        textTransform: 'none',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '10px',
-        '&:hover': {
-            backgroundColor: '#fff',
-            color: '#5356FF',
-            border: '1px solid #5356FF'
-        }
-        }
-    };
+   
 
     const handleAddClient = () => {
         // Your logic to handle adding a site
@@ -91,6 +58,7 @@ function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
         address: '',
         email: '',
         otherAddress: '',
+        description: 'inovative and reliable concrete solutions for construction projects.'
         
     });
 
@@ -142,7 +110,7 @@ function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
                                 />
                                 </Box><Box display='flex' flexDirection='column' >
 
-                                <label className={classes.label_text} htmlFor="newSiteData.Nom">Prenom :</label>
+                                <label className={classes.label_text} htmlFor="newSiteData.Nom">Adress :</label>
                             <TextField
                                  sx={{
                                     '& .MuiInputBase-root':{
@@ -210,7 +178,7 @@ function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
                 </DialogContent>
                 <DialogActions>
                      
-                        <Button onClick={handleAddClient} sx={{ ...buttons.primaryButoon, height: '40px' }}><LuFolderPlus size={20}/>  Ajouter Client </Button>
+                        <Button onClick={handleAddClient} sx={{ ...buttonStyles.primary, height: '40px' }}><LuFolderPlus size={20}/>  Ajouter Client </Button>
 
                 </DialogActions>
             </Dialog>

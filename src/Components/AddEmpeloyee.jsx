@@ -13,6 +13,7 @@ import { makeStyles } from '@mui/styles';
 import { TiUserAdd } from "react-icons/ti";
 import { LuFolderPlus } from 'react-icons/lu';
 import { MdFactory } from 'react-icons/md';
+import { buttonStyles } from '../Layout/buttonStyles';
 
 
 
@@ -46,60 +47,6 @@ const useStyles = makeStyles({
 
 
 //! style buttons :
-const buttons = {
-    type_site: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '10px',
-        backgroundColor: '#F5F5F5',
-        borderRadius: '8px',
-        border: '1px solid #D3D3D3',
-        width: '150px',
-        height: '150px',
-        cursor: 'pointer'
-    },
-    greyButton: {
-        backgroundColor: '#E0E0E0',
-        color: '#000'
-    },
-    primaryButoon: {
-        backgroundColor: '#5356FF',
-    color: '#fff',
-    borderRadius: '5px',
-    padding: '0 20px',
-    border: '1px solid #5356FF',
-    textTransform: 'none',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '10px',
-    '&:hover': {
-        backgroundColor: '#fff',
-        color: '#5356FF',
-        border: '1px solid #5356FF'
-    }
-    },
-    greenButton:{
-        backgroundColor: 'rgba(143, 255, 0, 0.15)',
-    color: '#fff',
-    borderRadius: '5px',
-    padding: '8px 30px',
-    border: '1px solid #00B707',
-    textTransform: 'none',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '10px',
-    '&:hover': {
-        backgroundColor: '#fff',
-        color: '#00B707',
-        border: '1px solid #00B707'
-    }
-
-    }
-};
-
 
 
 function AddEmpeloyee({ isDialogOpen, onCloseDialog ,onAddClient }) {
@@ -136,8 +83,8 @@ function AddEmpeloyee({ isDialogOpen, onCloseDialog ,onAddClient }) {
         const { name, value } = e.target;
 
         // If you need to increment the id on every change
-        setCount(prevCount => {
-            const newCount = prevCount + 1;
+        setCount(count => {
+            const newCount = count + 1;
             setFormData({
                 ...formData,
                 [name]: value,
@@ -145,6 +92,13 @@ function AddEmpeloyee({ isDialogOpen, onCloseDialog ,onAddClient }) {
             });
             return newCount;
         });
+    };
+
+
+    const [selectedButton, setSelectedButton] = useState(null);
+
+    const handleButtonClick = (level) => {
+        setSelectedButton(level);
     };
 
 
@@ -233,15 +187,24 @@ function AddEmpeloyee({ isDialogOpen, onCloseDialog ,onAddClient }) {
                         <label className={classes.label_text} htmlFor="newSiteData.Nom" >Qualification:</label>
                         <Box display={'flex'} gap={'20px'} marginTop={'10px'}>
 
-                            <Button sx={buttons.greenButton}>
-                                <Typography variant="subtitle2" color="initial">niveau 1</Typography>
-                            </Button>
-                            <Button  sx={buttons.greenButton}>
-                                <Typography variant="subtitle2" color="initial">niveau 1</Typography>
-                            </Button>
-                            <Button  sx={buttons.greenButton}>
-                                <Typography variant="subtitle2" color="initial">niveau 1</Typography>
-                            </Button>
+                        <Button
+                sx={selectedButton === 1 ? buttonStyles.greenButton : buttonStyles.greyButton}
+                onClick={() => handleButtonClick(1)}
+            >
+                <Typography variant="subtitle2" color="initial">niveau 1</Typography>
+            </Button>
+            <Button
+                sx={selectedButton === 2 ? buttonStyles.greenButton : buttonStyles.greyButton}
+                onClick={() => handleButtonClick(2)}
+            >
+                <Typography variant="subtitle2" color="initial">niveau 2</Typography>
+            </Button>
+            <Button
+                sx={selectedButton === 3 ? buttonStyles.greenButton : buttonStyles.greyButton}
+                onClick={() => handleButtonClick(3)}
+            >
+                <Typography variant="subtitle2" color="initial">niveau 3</Typography>
+            </Button>
                         </Box>
                             
                         </Box>
@@ -251,7 +214,7 @@ function AddEmpeloyee({ isDialogOpen, onCloseDialog ,onAddClient }) {
         </DialogContent>
         <DialogActions>
              
-                <Button onClick={handleAddEmployee} sx={{ ...buttons.primaryButoon, height: '40px' }}> Ajouter un Employee  <TiUserAdd size={20} /></Button>
+                <Button onClick={handleAddEmployee} sx={{ ...buttonStyles.primary, height: '40px' }}> Ajouter un Employee  <TiUserAdd size={20} /></Button>
 
         </DialogActions>
     </Dialog></div>
