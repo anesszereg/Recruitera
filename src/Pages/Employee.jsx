@@ -1,14 +1,14 @@
-import {Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, Typography} from '@mui/material';
-import {makeStyles} from '@mui/styles';
-import React, { useState } from 'react'
-import {LuFolderPlus} from 'react-icons/lu';
+import React, { useEffect, useState } from 'react';
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, Typography, Box } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { LuFolderPlus } from 'react-icons/lu';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllUsers, createUser } from '../Redux/userSlice'; // Assuming Redux actions are correctly imported
+
 import EmplyeeTable from '../Components/EmplyeeTable';
 import AddEmpeloyee from '../Components/AddEmpeloyee';
 import { buttonStyles } from '../Layout/buttonStyles';
-
-
-// ! style :
-
+import axios from 'axios';
 
 const useStyles = makeStyles({
     container: {
@@ -22,41 +22,39 @@ const useStyles = makeStyles({
         justifyContent: 'space-between',
         alignItems: 'center'
     }
-
-
 });
 
-
-// !! create fake data :
-
-function createData(Id, ProjectCount, name, email, ) {
-  return {
-      Id,
-      ProjectCount:0,
-      name,
-      email,
-
-  };
-}
-
-const rows = [
-   
-
-
-];
-
-
 function Employee() {
+    const classes = useStyles(); // Assuming useStyles is defined somewhere
+    const dispatch = useDispatch();
+    const users = useSelector((state) => state.user.users); // Assuming your state structure has a 'users' array
 
 
-
-
-    const classes = useStyles()
-
-
+    console.log({users});
     const [currentPage, setCurrentPage] = useState(1);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
     const rowsPerPage = 10;
-    const totalPages = Math.ceil(rows.length / rowsPerPage);
+
+    useEffect(() => {
+        dispatch(getAllUsers()); // Fetch all users when component mounts
+    }, [dispatch]);
+
+    // Check if users exist or still loading
+    if (!users) {
+        return (
+            <div className={classes.container}>
+                <Typography variant="h5">Loading...</Typography>
+            </div>
+        );
+    }
+
+    // Calculate total pages based on number of users and rows per page
+    const totalPages = Math.ceil(users.length / rowsPerPage);
+
+    // Pagination logic to get current rows for the current page
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = Math.min(startIndex + rowsPerPage, users.length);
+    const currentRows = users.slice(startIndex, endIndex);
 
     const handlePreviousPage = () => {
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -66,13 +64,6 @@ function Employee() {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
 
-    const startIndex = (currentPage - 1) * rowsPerPage;
-    const endIndex = startIndex + rowsPerPage;
-    const currentRows = rows.slice(startIndex, endIndex);
-
-
-    const [isDialogOpen, setIsDialogOpen] = useState(false)
-
     const handleOpenDialog = () => {
         setIsDialogOpen(true);
     };
@@ -81,56 +72,32 @@ function Employee() {
         setIsDialogOpen(false);
     };
 
-    const handleAddEmployee = (employee) => {
-        rows.push(employee);
-        setIsDialogOpen(false);
-    };
-
+    
     return (
-        <div className={
-            classes.container
-        }>
-
-
-            <div className={
-                classes.upSection
-            }>
-                <Typography variant={'h5'}>Liste des Employee :</Typography>
-
-
-                <Button onClick={
-handleOpenDialog
-                    }
-                    sx={
-                        {
-                            ...buttonStyles.primary,
-                            height: '40px'
-                        }
-                }>
+        <div className={classes.container}>
+            <div className={classes.upSection}>
+                <Typography variant={'h5'}>Liste des Employés :</Typography>
+                <Button onClick={handleOpenDialog} sx={{ ...buttonStyles.primary, height: '40px' }}>
                     <LuFolderPlus size={20} />
-                    Ajouter un Employee
+                    Ajouter un Employé
                 </Button>
-
             </div>
-
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
                     <TableHead>
                         <TableRow>
-
-                            <TableCell  align="left">#ID</TableCell>
-                            <TableCell align="left">Project</TableCell>
+                            <TableCell align="left">#ID</TableCell>
                             <TableCell align="left">Nom</TableCell>
                             <TableCell align="left">Prenom</TableCell>
                             <TableCell align="left">Email</TableCell>
-                            <TableCell align="center" >Actions</TableCell>
-                            <TableCell />
-                            <TableCell />
+                            <TableCell align="left">passwod</TableCell>
+                            <TableCell align="center">Actions</TableCell>
+                            {/* <TableCell align="left"></TableCell> */}
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {currentRows.map((row, i) => (
-                            <EmplyeeTable key={i} row={row} />
+                            <EmplyeeTable key={row.id} row={row} />
                         ))}
                     </TableBody>
                     <TableFooter>
@@ -166,16 +133,9 @@ handleOpenDialog
                     </TableFooter>
                 </Table>
             </TableContainer>
-
-                                        <AddEmpeloyee isDialogOpen={isDialogOpen}
-                onCloseDialog={handleCloseDialog}
-                onAddClient={handleAddEmployee} />
-
-
+            <AddEmpeloyee isDialogOpen={isDialogOpen} onCloseDialog={handleCloseDialog}  />
         </div>
-    )
+    );
 }
 
-export default Employee
-
-
+export default Employee;

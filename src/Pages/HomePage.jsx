@@ -9,6 +9,7 @@ import {LuCpu} from 'react-icons/lu';
 import User from '../Components/User';
 import image from '../assets/images/avatar.jpg'
 import map from '../assets/images/map.png'
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     container: {
@@ -50,29 +51,36 @@ const useStyles = makeStyles({
 
 // ! fake data
 
-const users = [
-    {
-        url: image,
-        name: 'John Doe',
-        role: 'Developer',
-        nbr_project: 5
-    }, {
-        url: image,
-        name: 'Jane Smith',
-        role: 'Designer',
-        nbr_project: 8
-    }, {
 
-        url: image,
-        name: 'Alice Johnson',
-        role: 'Manager',
-        nbr_project: 3
-    },
-];
+// const users = [
+//     {
+//         url: image,
+//         name: 'John Doe',
+//         role: 'Developer',
+//         nbr_project: 5
+//     }, {
+//         url: image,
+//         name: 'Jane Smith',
+//         role: 'Designer',
+//         nbr_project: 8
+//     }, {
+
+//         url: image,
+//         name: 'Alice Johnson',
+//         role: 'Manager',
+//         nbr_project: 3
+//     },
+// ];
 
 
 function HomePage() {
 
+    
+const users = useSelector((state) => state.user.users); // Assuming your state structure has a 'users' array
+
+console.log('====================================');
+console.log(users,'😇');
+console.log('====================================');
 
     const classes = useStyles();
 
@@ -133,16 +141,16 @@ function HomePage() {
                       users.map((user, index) => (
                         <User key={index}
                         url={
-                          user.url
+                          user.image ? user.image : image
                         }
                         name={
-                          user.name
+                          user.nom
                         }
                         role={
-                          user.role
+                          user.email
                         }
                         nbr_project={
-                          user.nbr_project
+                          user.nbr_project? user.nbr_project : 0
                         }/>
                         ))
                       } 

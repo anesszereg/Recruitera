@@ -22,7 +22,7 @@ export const buttonStyles = {
         backgroundColor: '#E7E7E7',
         color: '#515151',
         borderRadius: '5px',
-        padding: '0 20px',
+        padding: '8px 30px',
         border: '1px solid #E7E7E7',
         textTransform: 'none',
         display: 'flex',

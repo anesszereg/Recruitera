@@ -6,6 +6,11 @@ import { makeStyles } from '@mui/styles';
 import { LuFolderPlus } from 'react-icons/lu';
 import ClientCard from '../Components/ClientCard';
 import MaterialCard from '../Components/MaterialCard';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMaterials } from '../Redux/MaterialSlice';
+import MaterilaDetails from '../Components/MaterilaDetails';
+// import Material from './Material';
 
 
 // ! style :
@@ -37,22 +42,15 @@ const useStyles = makeStyles({
 function Material() {
     const classes = useStyles()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
-    // ! create fake data :
-    // const [clients, setClients] = useState([
-    //     {
-    //         url: image_company,
-    //         name: 'Company One',
-    //         description: 'This is a brief description of Company One.'
-    //     }, {
-    //         url: image_company2,
-    //         name: 'Company Two',
-    //         description: 'This is a brief description of Company Two.'
-    //     },
-    // ]);
+    const  dispatch = useDispatch();
+    const Materials = useSelector((state) => state.material.materials); // Assuming your state structure has a 'users' array
+    
+
+
+    
+   
     const handleOpenDialog = () => {
-        console.log('====================================');
-        console.log('heloo');
-        console.log('====================================');
+       
         setIsDialogOpen(true);
     };
 
@@ -60,12 +58,17 @@ function Material() {
         setIsDialogOpen(false);
     };
 
-    const handleAddMaterial = (newMaterial) => {
-        setClients((prevMaterial) => [
-            ...prevMaterial,
-            newMaterial
-        ]);
-    };
+    // const handleAddMaterial = (newMaterial) => {
+    //     setClients((prevMaterial) => [
+    //         ...prevMaterial,
+    //         newMaterial
+    //     ]);
+    // };
+
+    useEffect(() => {
+        dispatch(fetchMaterials()); // Fetch all users when component mounts
+    }
+    , [dispatch]);
 
 
     return (
@@ -95,17 +98,21 @@ function Material() {
             <div className={
                 classes.cardContainer
             }>
-              <MaterialCard 
-              url={null}
-              name='Balance'
-              description='Equilibrium of physical, emotional, or financial stability and harmony.'
-
-              />
+                {
+                Materials.map((Material) => 
+                <MaterialCard key={Material.id}
+                    url={Material.url}
+                    name={Material.Designation}
+                    description={Material.Classe}
+                />)
+                }
+            
                 </div>
+                
 
 
-                <AddMaterial isDialogOpen={isDialogOpen} onCloseDialog={handleCloseDialog} onAddMaterial={handleAddMaterial}/>
-
+                <AddMaterial isDialogOpen={isDialogOpen} onCloseDialog={handleCloseDialog} />
+             
 
         </div>
     )

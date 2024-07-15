@@ -3,7 +3,7 @@ import React from 'react'
 import Typography from '@mui/material/Typography'
 import { Avatar, Box } from '@mui/material'
 
-
+import image from '../assets/images/noone.png'
 
 
 
@@ -38,13 +38,15 @@ const useStyles = makeStyles({
 function User({url , name, role , nbr_project}) {
 
     const classes = useStyles()
-
+console.log('====================================');
+console.log(role , name);
+console.log('====================================');
 
   return (
     <div className={classes.container}>
         <Box display='flex' alignItems='center' gap='15px'>
 
-            <Avatar alt="Cindy Baker" src={url} sx={{ width: 48, height: 48 }} />
+            <Avatar alt="Cindy Baker" src={image} sx={{ width: 48, height: 48 }} />
             <Box display='flex' flexDirection='column' gap='4px' >
                 <Typography fontSize={'14px'} color="initial">{name}</Typography>
                 <Typography fontSize={'10px' } fontWeight={'600'} color="rgba(126, 126, 126, 1)">

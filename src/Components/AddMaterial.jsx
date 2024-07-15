@@ -11,6 +11,8 @@ import { makeStyles } from '@mui/styles';
 import React, { useState } from 'react';
 import { buttonStyles } from '../Layout/buttonStyles';
 import { TiArrowRight, TiUserAdd } from 'react-icons/ti';
+import { useDispatch } from 'react-redux';
+import { createMaterial } from '../Redux/MaterialSlice';
 
 const useStyles = makeStyles({
     dialogStyle: {
@@ -30,12 +32,16 @@ const useStyles = makeStyles({
     }
 });
 
-function AddMaterial({ isDialogOpen, onCloseDialog, onAddMaterial }) {
+function AddMaterial({ isDialogOpen, onCloseDialog }) {
+
+
     const classes = useStyles();
+    const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({
         designation: '',
         class: '',
-        manufacturer: '',
+        Constructeur: '',
         unit: '',
         range: '',
         resolution: '',
@@ -44,8 +50,22 @@ function AddMaterial({ isDialogOpen, onCloseDialog, onAddMaterial }) {
     });
 
     const handleAddMaterial = () => {
-        console.log('Material added');
-        onAddMaterial(formData);
+
+        const data = {
+            Designation: formData.designation,
+            Constructeur: formData.Constructeur,
+            Etendu: formData.range,
+            Numero_de_serie: formData.serialNumber,
+            Classe: formData.class,
+            Unite: formData.unit,
+            Resolution: formData.resolution,
+            Identification: formData.identification,
+     
+        }
+
+        dispatch(createMaterial(data));
+        
+        // onAddMaterial(formData);
         onCloseDialog();
     };
 
@@ -76,7 +96,7 @@ function AddMaterial({ isDialogOpen, onCloseDialog, onAddMaterial }) {
         {[
             { label: 'Désignation', name: 'designation' },
             { label: 'Classe', name: 'class' },
-            { label: 'Constructeur', name: 'manufacturer' },
+            { label: 'Constructeur', name: 'Constructeur' },
             { label: 'Unité', name: 'unit' },
             { label: 'Etendu', name: 'range' },
             { label: 'Résolution', name: 'resolution' },

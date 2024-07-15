@@ -21,6 +21,9 @@ import { buttonStyles } from '../Layout/buttonStyles';
 import { FaTools } from 'react-icons/fa';
 import { MdFactory } from 'react-icons/md';
 import AddMaterial from '../Components/AddMaterial';
+import SelectMaterial from '../Components/SelectMaterial';
+import { useSelector } from 'react-redux';
+import MaterilaDetails from '../Components/MaterilaDetails';
 
 // !! create fake data :
 
@@ -85,7 +88,17 @@ function ClientFiles() {
     const rowsPerPage = 10;
     const totalPages = Math.ceil(rows.length / rowsPerPage);
 
-
+    const materials = useSelector(state => state.material.materials);
+   
+    console.log('====================================');
+    console.log(materials);
+    console.log('====================================');
+    const users = useSelector(state => state.user.users);
+    console.log('====================================');
+    console.log(
+        users
+    );
+    console.log('====================================');
 
 
     //!functions 
@@ -101,7 +114,8 @@ function ClientFiles() {
 
     const startIndex = (currentPage - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
-    const currentRows = rows.slice(startIndex, endIndex);
+    // const currentRows = rows.slice(startIndex, endIndex);
+    const currentRows  = useSelector(state => state.material.materials).slice(startIndex, endIndex);
 
 
     const handleOpenDialog = () => {
@@ -114,6 +128,7 @@ function ClientFiles() {
     const handleCloseDialog = () => {
         setIsDialogOpen(false);
     };
+
 
     const handleAddMaterial = (newMaterial) => {
         setClients((prevMaterial) => [
@@ -159,9 +174,9 @@ function ClientFiles() {
                         </Typography>
                     </div>
                     <div className={classes.form}>
-                        <Typography variant="subtitle1" color={'#7E7E7E'}>Numero du Telephone:</Typography>
+                        <Typography variant="subtitle1" color={'#7E7E7E'}>Numero OS:</Typography>
                         <Typography variant="subtitle1" color="initial">
-                            +213553647393
+                            3553647393
                         </Typography>
                     </div>
                     <div className={classes.form}>
@@ -245,8 +260,8 @@ function ClientFiles() {
             </div>
 
 
-            <AddMaterial isDialogOpen={isDialogOpen} onCloseDialog={handleCloseDialog} onAddMaterial={handleAddMaterial}/>
-
+            <SelectMaterial isDialogOpen={''} onCloseDialog={handleCloseDialog} onAddMaterial={handleAddMaterial}/>
+            <MaterilaDetails isDialogOpen={isDialogOpen} onCloseDialog={handleCloseDialog}/>
         </div>
     );
 }

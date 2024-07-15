@@ -1,6 +1,6 @@
 import {Box, Button, Typography} from '@mui/material';
 import {makeStyles} from '@mui/styles';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {LuFolderPlus} from 'react-icons/lu';
 import ClientCard from '../Components/ClientCard';
 import image_company from '../assets/images/company1.png';
@@ -11,6 +11,9 @@ import image_company4 from '../assets/images/company4.png';
 import { MdFactory } from 'react-icons/md';
 import AddClient from '../Components/AddClient';
 import { buttonStyles } from '../Layout/buttonStyles';
+import { ToastContainer } from 'react-toastify';
+import { fetchClients } from '../Redux/clientSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 // ! style :
@@ -48,15 +51,18 @@ function Client() {
     
     const classes = useStyles()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
+    const dispatch = useDispatch();
+    const clients = useSelector((state) => state.client.clients); // Assuming your state structure has a 'users' array
+
     // ! create fake data :
-    const [clients, setClients] = useState([
-            {
-            url: null,
-            name: 'Sarl Company ',
-            description: 'inovative  and reliable concrete solutions for construction projects.'
-        },
+//     const [clients, setClients] = useState([
+//             {
+//             url: null,
+//             name: 'Sarl Company ',
+//             description: 'inovative  and reliable concrete solutions for construction projects.'
+//         },
    
-   ]);
+//    ]);
     const handleOpenDialog = () => {
         setIsDialogOpen(true);
     };
@@ -66,8 +72,14 @@ function Client() {
     };
 
     const handleAddClient = (newClient) => {
-        setClients((prevClients) => [...prevClients, newClient]);
+        // setClients((prevClients) => [...prevClients, newClient]);
     };
+
+
+    // use effect to get client from the server \
+    useEffect(() => {
+        dispatch(fetchClients()); // Fetch all client when component mounts
+    }, [dispatch]);
 
 
     return (
@@ -106,10 +118,10 @@ function Client() {
                             client.url 
                         }
                         name={
-                            client.name
+                            client.nom_client
                         }
                         description={
-                            client.description
+                            client.address
                         }/>
                 ))
             } </div>

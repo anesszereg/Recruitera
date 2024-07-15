@@ -12,6 +12,8 @@ import { makeStyles } from '@mui/styles';
 import { LuFolderPlus } from 'react-icons/lu';
 import { MdFactory } from 'react-icons/md';
 import { buttonStyles } from '../Layout/buttonStyles';
+import { useDispatch } from 'react-redux';
+import { createClient } from '../Redux/clientSlice';
 
 const useStyles = makeStyles({
 
@@ -41,10 +43,19 @@ const useStyles = makeStyles({
 function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
 
     const classes = useStyles();
-
-   
+    const dispatch = useDispatch(); 
 
     const handleAddClient = () => {
+
+
+        const data = {
+            nom_client: formData.name,
+            address: formData.address,
+            email: formData.email,
+            N_OS : formData.N_OS,
+        }
+        console.log(data);
+        dispatch(createClient(data));
         // Your logic to handle adding a site
         console.log('Site added');
             // Pass the form data to the parent component
@@ -57,8 +68,7 @@ function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
         name: '',
         address: '',
         email: '',
-        otherAddress: '',
-        description: 'inovative and reliable concrete solutions for construction projects.'
+        N_OS: 0,
         
     });
 
@@ -152,7 +162,7 @@ function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
                                 />
                                 </Box><Box display='flex' flexDirection='column' >
 
-                                <label className={classes.label_text} htmlFor="newSiteData.Nom">Telephone:</label>
+                                <label className={classes.label_text} htmlFor="newSiteData.Nom">N_OS:</label>
                             <TextField
                                  sx={{
                                     '& .MuiInputBase-root':{
@@ -162,11 +172,11 @@ function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
                                       width:'300px',
                                     
                                 }}
-                            value={formData.otherAddress}
+                            value={formData.N_OS}
                             fullWidth
                             margin="normal"
                             onChange={handleChange}
-                            name='otherAddress'
+                            name='N_OS'
                             />
                         </Box>
                         </Box>

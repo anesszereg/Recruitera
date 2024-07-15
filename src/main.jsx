@@ -10,6 +10,9 @@ import Employee from './Pages/Employee.jsx';
 import Material from './Pages/Material.jsx';
 import Support from './Pages/Support.jsx';
 import ClientFiles from './Pages/ClientFiles.jsx';
+import { Provider } from 'react-redux';
+import store from './Redux/Store.js';
+import Settings from './Pages/Settings.jsx';
 
 
 
@@ -27,12 +30,12 @@ const router = createBrowserRouter([
                 element: <Client    />  
             },
             {
-                path: "/Dashboard/Employés",
+                path: "/Dashboard/Employes",
                 element: <Employee/>
             }
             ,
             {
-                path: "/Dashboard/Matériel",
+                path: "/Dashboard/Materiel",
                 element: <Material/>
             }
             ,
@@ -44,6 +47,11 @@ const router = createBrowserRouter([
             {
                 path: "/Dashboard/ClientFiles",
                 element: <ClientFiles/>
+            }
+            ,
+            {
+                path: "/Dashboard/Settings",
+                element: <Settings/>
             }
         ]
 
@@ -57,5 +65,8 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render (<React.StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+        
+    <RouterProvider router={router} />
+    </Provider>
 </React.StrictMode>,)
