@@ -38,9 +38,6 @@ const useStyles = makeStyles({
 function User({url , name, role , nbr_project}) {
 
     const classes = useStyles()
-console.log('====================================');
-console.log(role , name);
-console.log('====================================');
 
   return (
     <div className={classes.container}>

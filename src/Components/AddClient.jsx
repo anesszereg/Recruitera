@@ -54,10 +54,10 @@ function AddClient({ isDialogOpen, onCloseDialog ,onAddClient }) {
             email: formData.email,
             N_OS : formData.N_OS,
         }
-        console.log(data);
+     
         dispatch(createClient(data));
         // Your logic to handle adding a site
-        console.log('Site added');
+
             // Pass the form data to the parent component
             onAddClient(formData);
             // Optionally close the dialog after adding the client

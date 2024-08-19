@@ -68,8 +68,7 @@ function AddEmployee({ isDialogOpen, onCloseDialog }) {
             status: true
         };
 
-        console.log(newUser.nom);
-        console.log(formData);
+
         dispatch(createUser(formData)); // Dispatch the action to add the employee
         onCloseDialog(); // Optionally close the dialog after adding the employee
     };

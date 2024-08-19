@@ -5,6 +5,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './userSlice';
 import clientSlice from './clientSlice';
 import MaterialSlice from './MaterialSlice';
+import dialogSlice from './dialogSlice';
 
 
 export const store = configureStore({
@@ -12,7 +13,8 @@ export const store = configureStore({
     reducer: {
         user: userSlice,
         client: clientSlice,
-        material: MaterialSlice
+        material: MaterialSlice,
+        dialog: dialogSlice
     },
     });
 // export the store

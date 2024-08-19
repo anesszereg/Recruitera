@@ -11,9 +11,9 @@ function Navbar() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const user = useSelector((state) => state.user.user);
 
-  // console.log('====================================');
-  // console.log(, 'user');
-  // console.log('====================================');
+  console.log('====================================');
+  console.log(user);
+  console.log('====================================');
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,7 +28,7 @@ function Navbar() {
       <Typography variant="body2" color="initial">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Typography>
       <Box display={'flex'} alignItems={'center'} gap={'15px'}>
         <Typography variant="subtitle2" color="initial">
-        {user?.name? user.name : 'Hamedi'}
+        {user?.nom? user.nom : 'user'}
         
         </Typography>
         <Avatar alt="Cindy Baker" src={noOne} sx={{ width: 48, height: 48 }} />

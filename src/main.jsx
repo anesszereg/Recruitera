@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             }
             ,
             {
-                path: "/Dashboard/ClientFiles",
+                path: "/Dashboard/ClientFiles/:id",
                 element: <ClientFiles/>
             }
             ,
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
 
     },
     {
-        path: "/login",
+        path: "/",
         element: <Login/>
     
     }

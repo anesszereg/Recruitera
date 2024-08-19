@@ -6,22 +6,25 @@ import { TableRow, TableCell, Box, Typography } from '@mui/material'; // Adjust 
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import { MdEmail, MdOutlineRemoveRedEye } from 'react-icons/md';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
+import { setDialog } from '../Redux/dialogSlice';
 
 
-function MaterialTable({ row ,seeDetails, onCloseDialog}) {
+function MaterialTable({ row }) {
 
-  console.log('====================================');
-  console.log(row.status);
-  console.log('====================================');
 
   const createdAtDate = new Date(row.createdAt);
 
   // Step 2: Format the date to display only the date part
   const formattedDate = createdAtDate.toLocaleDateString();// Adjust locale if needed
 
+
+    const dispatch = useDispatch();
   const handleClick = () => {
- 
-    seeDetails();
+
+    dispatch(setDialog({open:true}))
+    
+    
   }
 
 

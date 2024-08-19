@@ -22,8 +22,10 @@ import { FaTools } from 'react-icons/fa';
 import { MdFactory } from 'react-icons/md';
 import AddMaterial from '../Components/AddMaterial';
 import SelectMaterial from '../Components/SelectMaterial';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MaterilaDetails from '../Components/MaterilaDetails';
+import { useParams } from 'react-router-dom';
+import { setDialog } from '../Redux/dialogSlice';
 
 // !! create fake data :
 
@@ -87,19 +89,12 @@ function ClientFiles() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const rowsPerPage = 10;
     const totalPages = Math.ceil(rows.length / rowsPerPage);
+    const dispatch = useDispatch();
+    const seeDetails = useSelector(state => state.dialog.open);
 
     const materials = useSelector(state => state.material.materials);
    
-    console.log('====================================');
-    console.log(materials);
-    console.log('====================================');
     const users = useSelector(state => state.user.users);
-    console.log('====================================');
-    console.log(
-        users
-    );
-    console.log('====================================');
-
 
     //!functions 
 
@@ -119,14 +114,13 @@ function ClientFiles() {
 
 
     const handleOpenDialog = () => {
-        console.log('====================================');
-        console.log('heloo');
-        console.log('====================================');
+
         setIsDialogOpen(true);
     };
 
     const handleCloseDialog = () => {
         setIsDialogOpen(false);
+        dispatch(setDialog({ open: false }));
     };
 
 
@@ -138,13 +132,15 @@ function ClientFiles() {
     };
 
     const classes = useStyles();
+
+    const { id } = useParams();
     return (
         <div className={classes.container}>
             <div className={classes.upSection}>
                 <Box display={'flex'} alignItems={'center'} gap='10px'>
                     <Typography variant={'h4'}>Clients /</Typography>
                     <Typography variant={'body1'} color={'#7E7E7E'}>
-                        #Nom De client
+                        #Nom De client {id}
                     </Typography>
                 </Box>
 
@@ -260,8 +256,8 @@ function ClientFiles() {
             </div>
 
 
-            <SelectMaterial isDialogOpen={''} onCloseDialog={handleCloseDialog} onAddMaterial={handleAddMaterial}/>
-            <MaterilaDetails isDialogOpen={isDialogOpen} onCloseDialog={handleCloseDialog}/>
+            <SelectMaterial isDialogOpen={isDialogOpen} onCloseDialog={handleCloseDialog} onAddMaterial={handleAddMaterial}/>
+            <MaterilaDetails isDialogOpen={seeDetails} onCloseDialog={handleCloseDialog}/>
         </div>
     );
 }

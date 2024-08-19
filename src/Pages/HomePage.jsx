@@ -78,9 +78,6 @@ function HomePage() {
     
 const users = useSelector((state) => state.user.users); // Assuming your state structure has a 'users' array
 
-console.log('====================================');
-console.log(users,'😇');
-console.log('====================================');
 
     const classes = useStyles();
 

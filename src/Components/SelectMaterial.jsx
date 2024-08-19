@@ -28,15 +28,9 @@ function SelectMaterial({ isDialogOpen, onCloseDialog }) {
     const classes = useStyles();
     const dispatch = useDispatch();
     const materials = useSelector(state => state.material.materials);
-    console.log('====================================');
-    console.log(materials);
-    console.log('====================================');
+  
     const users = useSelector(state => state.user.users);
-    console.log('====================================');
-    console.log(
-        users
-    );
-    console.log('====================================');
+   
     const [selectedMaterial, setSelectedMaterial] = useState('');
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [step, setStep] = useState(1); // Manage dialog steps

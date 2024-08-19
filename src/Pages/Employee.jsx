@@ -30,7 +30,7 @@ function Employee() {
     const users = useSelector((state) => state.user.users); // Assuming your state structure has a 'users' array
 
 
-    console.log({users});
+
     const [currentPage, setCurrentPage] = useState(1);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const rowsPerPage = 10;

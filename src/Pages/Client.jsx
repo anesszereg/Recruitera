@@ -114,6 +114,7 @@ function Client() {
                 {
                 clients.map((client, index) => (
                     <ClientCard key={index}
+                    id={client.id}
                         url={
                             client.url 
                         }
