@@ -15,7 +15,9 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         gap: '30px',
-        padding: '40px'
+        padding: '40px',
+        backgroundColor:"rgba(241, 245, 249, 1)",
+        height:'90vh'
     },
     upSection: {
         display: 'flex',
@@ -76,21 +78,31 @@ function Employee() {
     return (
         <div className={classes.container}>
             <div className={classes.upSection}>
-                <Typography variant={'h5'}>Liste des Employés :</Typography>
+                <Typography variant={'body1'}>Live jobs :</Typography>
+
+                <Box display={'flex'} gap={'20px'}>
+
                 <Button onClick={handleOpenDialog} sx={{ ...buttonStyles.primary, height: '40px' }}>
-                    <LuFolderPlus size={20} />
-                    Ajouter un Employé
+                    
+                   Create  job
                 </Button>
+
+                <Button onClick={handleOpenDialog} sx={{ ...buttonStyles.greyButton, height: '40px' }}>
+                    
+                        See Closed Jobs
+                </Button>
+                </Box>
             </div>
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left">#ID</TableCell>
-                            <TableCell align="left">Nom</TableCell>
-                            <TableCell align="left">Prenom</TableCell>
-                            <TableCell align="left">Email</TableCell>
-                            <TableCell align="left">passwod</TableCell>
+                            <TableCell align="left">Title</TableCell>
+                            <TableCell align="left">Location</TableCell>
+                            <TableCell align="left">Salary</TableCell>
+                            <TableCell align="left">CVs in Progress</TableCell>
+                            <TableCell align="left">Hires Required</TableCell>
+                            <TableCell align="left">Job On Website</TableCell>
                             <TableCell align="center">Actions</TableCell>
                             {/* <TableCell align="left"></TableCell> */}
                         </TableRow>

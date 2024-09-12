@@ -2,11 +2,11 @@
 
 export const buttonStyles = {
     primary: {
-        backgroundColor: 'rgba(83, 86, 255, 1)',
-        color: '#fff',
+        backgroundColor:'rgba(36, 99, 235, 1)',
+        color:  'white',
         borderRadius: '5px',
-        padding: '0 20px',
-        border: '1px solid rgba(83, 86, 255, 1)',
+        padding: ' 10px 20px ',
+        border: '1px solid rgba(36, 99, 235, 1)',
         textTransform: 'none',
         display: 'flex',
         justifyContent: 'center',
@@ -14,8 +14,8 @@ export const buttonStyles = {
         gap: '10px',
         '&:hover': {
             backgroundColor: '#fff',
-            color: 'rgba(83, 86, 255, 1)',
-            border: '1px solid rgba(83, 86, 255, 1)'
+            color: 'rgba(36, 99, 235, 1)',
+            border: '1px solid rgba(36, 99, 235, 1)'
         }
     },
     greyButton: {
