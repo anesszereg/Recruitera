@@ -13,6 +13,8 @@ import ClientFiles from './Pages/ClientFiles.jsx';
 import { Provider } from 'react-redux';
 import store from './Redux/Store.js';
 import Settings from './Pages/Settings.jsx';
+import LoginPage from './Pages/LoginPage.jsx';
+import SignUp from './Pages/SignUp.jsx';
 
 
 
@@ -58,8 +60,12 @@ const router = createBrowserRouter([
     },
     {
         path: "/",
-        element: <Login/>
+        element: <LoginPage/>
     
+    },
+    {
+        path:'/Signup',
+        element:<SignUp/>
     }
 
 ]);
